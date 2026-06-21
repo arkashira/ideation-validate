@@ -1,43 +1,22 @@
-from ideation_validate import IdeationValidate, Idea
+import pytest
+from io import StringIO
+import sys
+from ideation_validate import validate_idea
+from src import __main__
 
-def test_add_idea():
-    validate = IdeationValidate()
-    idea = Idea(1, 'category1')
-    validate.add_idea(idea)
-    assert len(validate.ideas) == 1
+def test_validate_idea():
+    idea_description = "Test idea"
+    idea = validate_idea(idea_description)
+    assert idea.description == idea_description
+    assert idea.market_size == 1000.0
+    assert idea.competition_score == 0.5
+    assert idea.willingness_to_pay == 10.0
 
-def test_log_feedback_success():
-    validate = IdeationValidate()
-    idea = Idea(1, 'category1')
-    validate.add_idea(idea)
-    validate.log_feedback(1, 'Success')
-    assert validate.ideas[0].success
-
-def test_log_feedback_failure():
-    validate = IdeationValidate()
-    idea = Idea(1, 'category1')
-    validate.add_idea(idea)
-    validate.log_feedback(1, 'Failure')
-    assert validate.ideas[0].failure
-
-def test_show_success_rate_trends():
-    validate = IdeationValidate()
-    idea1 = Idea(1, 'category1')
-    idea2 = Idea(2, 'category1')
-    idea3 = Idea(3, 'category2')
-    validate.add_idea(idea1)
-    validate.add_idea(idea2)
-    validate.add_idea(idea3)
-    validate.log_feedback(1, 'Success')
-    validate.log_feedback(2, 'Success')
-    trends = validate.show_success_rate_trends()
-    assert trends['category1'] == 1.0
-    assert trends['category2'] == 0.0
-
-def test_get_market_signals():
-    validate = IdeationValidate()
-    idea = Idea(1, 'category1')
-    validate.add_idea(idea)
-    validate.log_feedback(1, 'Success')
-    signals = validate.get_market_signals()
-    assert signals[1] == 'Success'
+def test_main(capsys):
+    idea_description = "Test idea"
+    __main__.main([idea_description])  # Call main function
+    captured = capsys.readouterr()
+    assert "description" in captured.out
+    assert "market_size" in captured.out
+    assert "competition_score" in captured.out
+    assert "willingness_to_pay" in captured.out

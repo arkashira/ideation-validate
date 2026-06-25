@@ -1,2 +1,2 @@
-# Notion Integration
-This project provides a simple Notion integration for creating pages with signal details.
+# PRD Generator
+A Python project to generate PRDs from validated ideas.

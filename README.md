@@ -1,12 +1,21 @@
-# Ideation Validate
-A Python project for ideation validation.
+# ideation-validate
+
+A minimal Problem Signal Aggregator. This tool helps creators browse a curated list of market problems, sorted by revenue potential, to identify high-value software ideas.
+
+## Features
+
+- **Signal Aggregation**: Curated list of problem signals with title, description, revenue evidence, and market size.
+- **Smart Sorting**: Automatically sorts signals by revenue potential (highest first).
+- **Pagination**: Browse signals via configurable page size.
+- **Standard Library Only**: No external runtime dependencies.
+
+## Installation
+
+1. Clone the repository.
+2. Ensure you have Python 3.8+ installed.
 
 ## Usage
-1. Create an instance of `IdeationValidate`.
-2. Add ideas using `add_idea`.
-3. Log feedback using `log_feedback`.
-4. Show success rate trends using `show_success_rate_trends`.
-5. Get market signals using `get_market_signals`.
 
-## Testing
-Run tests using `pytest`.
+### Run the CLI Demo
+
+To browse the mock problem signals:

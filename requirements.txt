@@ -1,1 +1,4 @@
-# No dependencies required
+# Runtime dependencies: None (Standard Library Only)
+
+# Development dependencies (optional, for running tests):
+# pytest
